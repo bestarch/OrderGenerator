@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -66,6 +67,12 @@ public class OrderGenerator {
 				Order order = createRandomOrder(list, count++, random);
 				System.out.println(order.toString());
 				producer.send(new ProducerRecord<>(INPUT_ORDER, msgId++, order), (RecordMetadata,Exception)->System.out.println("Export completed"));
+				try {
+					TimeUnit.SECONDS.sleep(8);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		executorService.shutdown();

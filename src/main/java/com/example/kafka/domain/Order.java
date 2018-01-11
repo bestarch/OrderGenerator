@@ -17,6 +17,7 @@ public class Order implements Serializable {
 	private String customerId;
 	private Date deliveryDate;
 	private String category;
+	private String status = "NEW";
 
 	public Order(String id, String productName, String zipCode, int quantity, Double price, String paymentMode,
 			Date orderedDate, String customerId, String category) {
@@ -181,6 +182,20 @@ public class Order implements Serializable {
 	 */
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
+	}
+	
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	/* (non-Javadoc)
